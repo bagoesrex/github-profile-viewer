@@ -3,11 +3,17 @@ import { GithubUser } from "@/types/github";
 const GITHUB_API_BASE = "https://api.github.com";
 
 async function githubFetch<T>(endpoint: string): Promise<T> {
-    const res = await fetch(`${GITHUB_API_BASE}${endpoint}`, {
-        headers: {
-            Accept: "application/json",
-        },
-    });
+    const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+
+    const headers: Record<string, string> = {
+        Accept: "application/json",
+    };
+
+    if (token) {
+        headers.Authorization = `Bearer ${token}`;
+    }
+
+    const res = await fetch(`${GITHUB_API_BASE}${endpoint}`, { headers });
 
     if (!res.ok) {
         const message = `GitHub API error ${res.status}: ${res.statusText}`;
