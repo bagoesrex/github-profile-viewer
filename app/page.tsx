@@ -3,6 +3,7 @@
 import { useGithubUser } from "@/hooks/use-github-user";
 import { useState } from "react";
 import SearchForm from "./_components/search-form";
+import ErrorCard from "./_components/error-card";
 
 export default function HomePage() {
   const [searchUser, setSearchUser] = useState("")
@@ -14,14 +15,17 @@ export default function HomePage() {
         <div>
           <h1 className="text-xl font-bold">Github Profile Viewer</h1>
           <p>enter a username:</p>
-          {error && (`${error.message}`)}
         </div>
 
         <SearchForm onSearch={setSearchUser} isLoading={isLoading} />
 
-        <pre className="bg-gray-900 text-white p-4 rounded-md text-sm">
-          {JSON.stringify(data, null, 2)}
-        </pre>
+        {error && <ErrorCard message={error.message} />}
+
+        {data && (
+          <pre className="bg-gray-900 text-white p-4 rounded-md text-sm">
+            {JSON.stringify(data, null, 2)}
+          </pre>
+        )}
       </div>
     </main>
   );
