@@ -16,7 +16,8 @@ async function githubFetch<T>(endpoint: string): Promise<T> {
     const res = await fetch(`${GITHUB_API_BASE}${endpoint}`, { headers });
 
     if (!res.ok) {
-        const message = `GitHub API error ${res.status}: ${res.statusText}`;
+        const message = res.status === 404 ? `User Not Found` : `Github API error ${res.status}: ${res.statusText}`
+
         throw new Error(message);
     }
 
