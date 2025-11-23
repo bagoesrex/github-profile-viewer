@@ -32,7 +32,7 @@ export default function HomePage() {
             </div>
           )}
           {GithubRepositoriesData && (
-            <div className="w-full h-200">
+            <div className="w-full md:max-w-8/12">
               <UserRepositoriesWrapper repositories={GithubRepositoriesData} />
             </div>
           )}
