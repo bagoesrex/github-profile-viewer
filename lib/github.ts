@@ -1,4 +1,5 @@
 import { GithubUser } from "@/types/github";
+import { GithubRepository } from "@/types/repository";
 
 const GITHUB_API_BASE = "https://api.github.com";
 
@@ -26,4 +27,8 @@ async function githubFetch<T>(endpoint: string): Promise<T> {
 
 export function getGithubUser(username: string) {
     return githubFetch<GithubUser>(`/users/${username}`);
+}
+
+export function getGithubRepository(username: string) {
+    return githubFetch<GithubRepository>(`/users/${username}/repos`);
 }

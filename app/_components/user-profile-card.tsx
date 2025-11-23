@@ -17,7 +17,7 @@ export default function UserProfileCard({ user }: UserProfileCardProps) {
         : `https://${user.blog}`;
 
     return (
-        <Card className="max-w-full md:max-w-90 p-3.5 gap-2">
+        <Card className="w-full p-3.5 gap-2">
             <CardHeader>
                 <CardTitle>
                     <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden mx-auto ring-1 ring-offset-2 ring-black/60">
