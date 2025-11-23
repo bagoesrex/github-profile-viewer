@@ -29,6 +29,6 @@ export function getGithubUser(username: string) {
     return githubFetch<GithubUser>(`/users/${username}`);
 }
 
-export function getGithubRepository(username: string) {
-    return githubFetch<GithubRepository>(`/users/${username}/repos`);
+export function getGithubRepositories(username: string) {
+    return githubFetch<GithubRepository[]>(`/users/${username}/repos`);
 }

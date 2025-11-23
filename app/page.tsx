@@ -5,12 +5,13 @@ import { useState } from "react";
 import SearchForm from "./_components/search-form";
 import ErrorCard from "./_components/error-card";
 import UserProfileCard from "./_components/user-profile-card";
-import { useGithubRepository } from "@/hooks/use-github-repository";
+import { useGithubRepositories } from "@/hooks/use-github-repositories";
+import UserRepositoriesWrapper from "./_components/user-repositories-wrapper";
 
 export default function HomePage() {
   const [searchUser, setSearchUser] = useState("")
   const { data: GithubUserData, isLoading, error } = useGithubUser(searchUser);
-  const { data: GithubRepositoryData } = useGithubRepository(searchUser);
+  const { data: GithubRepositoriesData } = useGithubRepositories(searchUser);
 
   return (
     <main className="min-h-screen bg-linear-to-br from-white via-gray-100 to-gray-200">
@@ -24,18 +25,18 @@ export default function HomePage() {
 
         {error && <ErrorCard message={error.message} />}
 
-        {GithubUserData && (
-          <div className="flex flex-col md:flex-row gap-2 relative">
-            <div className="w-full md:w-5/12 none md:sticky top-2 h-fit">
+        <div className="flex flex-col md:flex-row gap-2 relative">
+          {GithubUserData && (
+            <div className="w-full md:max-w-4/12 none md:sticky top-2 h-fit">
               <UserProfileCard user={GithubUserData} />
             </div>
-            <div className="w-full h-200 overflow-scroll">
-              <pre className="bg-gray-900 text-white p-4 rounded-md text-sm">
-                {JSON.stringify(GithubRepositoryData, null, 2)}
-              </pre>
+          )}
+          {GithubRepositoriesData && (
+            <div className="w-full h-200">
+              <UserRepositoriesWrapper repositories={GithubRepositoriesData} />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </main>
   );
