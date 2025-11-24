@@ -1,5 +1,4 @@
 import { LucideIcon } from "lucide-react"
-import Link from "next/link"
 
 interface InfoItemProps {
     icon: LucideIcon
@@ -17,9 +16,14 @@ export default function InfoItem({ icon: Icon, text, href }: InfoItemProps) {
 
     if (href) {
         return (
-            <Link href={href} target="_blank" rel="noopener noreferrer">
+            <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+            >
                 {content}
-            </Link>
+            </a>
         )
     }
 
