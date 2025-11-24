@@ -7,6 +7,7 @@ import ErrorCard from "./_components/error-card";
 import UserProfileCard from "./_components/user-profile-card";
 import { useGithubRepositories } from "@/hooks/use-github-repositories";
 import UserRepositoriesWrapper from "./_components/user-repositories-wrapper";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 export default function HomePage() {
   const [searchUser, setSearchUser] = useState("")
@@ -26,12 +27,15 @@ export default function HomePage() {
         {error && <ErrorCard message={error.message} />}
 
         <div className="flex flex-col md:flex-row gap-2 relative">
+          {isLoading && (
+            <LoadingSpinner />
+          )}
           {GithubUserData && (
             <div className="w-full md:max-w-4/12 none md:sticky top-2 h-fit">
               <UserProfileCard user={GithubUserData} />
             </div>
           )}
-          {GithubRepositoriesData && (
+          {(GithubUserData && GithubRepositoriesData) && (
             <div className="w-full md:max-w-8/12">
               <UserRepositoriesWrapper repositories={GithubRepositoriesData} />
             </div>
