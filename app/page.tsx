@@ -32,7 +32,7 @@ export default function HomePage() {
 
         {error && <ErrorCard message={error.message} />}
 
-        <div className="flex flex-col md:flex-row gap-2 relative">
+        <div className="flex flex-col md:flex-row gap-6 relative">
           {isLoading && (
             <LoadingSpinner />
           )}
