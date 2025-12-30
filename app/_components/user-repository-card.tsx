@@ -37,15 +37,15 @@ export default function UserRepositoryCard({ repository }: UserRepositoryCardPro
             <CardContent className="p-2">
                 <div className="text-xs space-y-2">
                     <div className="flex flex-wrap gap-2">
-                        <InfoItem icon={Star} text={`${repository.stargazers_count} Stars`} />
-                        <InfoItem icon={Eye} text={`${repository.watchers_count} Watchers`} />
+                        <InfoItem icon={Star} label={`${repository.stargazers_count}`} description={"Stars"} />
+                        <InfoItem icon={Eye} label={`${repository.watchers_count}`} description={"Watchers"} />
                         {repository.language && (
-                            <InfoItem icon={CodeXml} text={repository.language} />
+                            <InfoItem icon={CodeXml} label={repository.language} description={""} />
                         )}
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        <InfoItem icon={Calendar} text={`${formattedCreatedAt}`} />
-                        <InfoItem icon={Clock} text={`Updated ${formattedUpdatedAt}`} />
+                        <InfoItem icon={Calendar} description={`${formattedCreatedAt}`} />
+                        <InfoItem icon={Clock} label={` ${formattedUpdatedAt}`} description={"Updated"} reverse={true} />
                     </div>
                 </div>
             </CardContent>

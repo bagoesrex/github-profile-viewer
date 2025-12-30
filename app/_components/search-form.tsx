@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Github } from "lucide-react";
+import { Github, Search } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -40,20 +40,24 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
                     name="username"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormControl>
-                                <Input
-                                    id="username"
-                                    type="text"
-                                    placeholder="username"
-                                    {...field}
-                                />
+                            <FormControl >
+                                <div className="relative">
+                                    <Github className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                                    <Input
+                                        id="username"
+                                        type="text"
+                                        className="pl-12 h-13 bg-input focus-visible:ring-ring"
+                                        placeholder="Enter Github username..."
+                                        {...field}
+                                    />
+                                </div>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button type="submit" disabled={isLoading}>
-                    <Github />
+                <Button type="submit" disabled={isLoading} className="w-40 h-13">
+                    <Search />
                     Search
                 </Button>
             </form>

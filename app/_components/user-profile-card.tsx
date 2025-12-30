@@ -17,7 +17,7 @@ export default function UserProfileCard({ user }: UserProfileCardProps) {
         : `https://${user.blog}`;
 
     return (
-        <Card className="w-full p-3.5 gap-2">
+        <Card className="w-full p-3.5 gap-2 glass-card">
             <CardHeader>
                 <CardTitle>
                     <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden mx-auto ring-1 ring-offset-2 ring-black/60">
@@ -29,37 +29,43 @@ export default function UserProfileCard({ user }: UserProfileCardProps) {
                         />
                     </div>
                 </CardTitle>
-                <CardDescription className="text-center">
-                    <h2 className="font-extrabold font-sans text-black">{user.name ?? "No name available."}</h2>
-                    <p className="text-sm">@{user.login}</p>
+                <CardDescription className="flex flex-col items-center text-center">
+                    <h2 className="font-extrabold font-sans text-xl gradient-text">{user.name ?? "No name available."}</h2>
+                    <p className="text-sm mb-3">@{user.login}</p>
+                    <p className="mb-3 text-primary">{user.bio ?? "No bio available."}</p>
+                    <div className="flex flex-wrap justify-center gap-2 mb-3">
+                        <InfoItem icon={Users} label={`${user.followers}`} description={"Followers"} />
+                        <InfoItem icon={Users} label={`${user.following}`} description={"Following"} />
+                    </div>
                 </CardDescription>
             </CardHeader>
             <CardContent className="p-3">
-                <div className="text-xs space-y-2">
-                    <p>{user.bio ?? "No bio available."}</p>
-                    <div className="flex flex-wrap gap-2">
-                        {user.location && (
-                            <InfoItem icon={MapPin} text={user.location} />
-                        )}
-                        {user.blog && (
-                            <InfoItem icon={LucideLink} text={user.blog} href={blogUrl} />
-                        )}
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        <InfoItem icon={Users} text={`${user.followers} Followers`} />
-                        <InfoItem icon={Users} text={`${user.following} Following`} />
-                        <InfoItem icon={BookMarked} text={`${user.public_repos} Repositories`} />
+                <div className="text-xs space-y-4">
+                    {(user.location || user.blog) && (
+                        <div className="flex flex-wrap gap-2">
+                            {user.location && (
+                                <InfoItem icon={MapPin} description={user.location} />
+                            )}
+                            {user.blog && (
+                                <InfoItem icon={LucideLink} description={user.blog} href={blogUrl} />
+                            )}
+                        </div>
+                    )}
+                    <div>
+                        <InfoItem icon={BookMarked} label={`${user.public_repos}`} description={"Repositories"} />
                     </div>
                     <div>
-                        <InfoItem icon={Calendar} text={`Joined ${formatedDate}`} />
+                        <InfoItem icon={Calendar} description={`Joined ${formatedDate}`} />
                     </div>
                 </div>
             </CardContent>
             <CardFooter className="py-0 px-3">
                 <Button asChild className="w-full flex gap-5">
-                    <a href={user.html_url} target="_blank" rel="noopener noreferrer">
-                        View On Github
+                    <a href={user.html_url} target="_blank" rel="noopener noreferrer" className="py-5.5">
                         <Github />
+                        <span>
+                            View On Github
+                        </span>
                     </a>
                 </Button>
             </CardFooter>

@@ -8,6 +8,7 @@ import UserProfileCard from "./_components/user-profile-card";
 import { useGithubRepositories } from "@/hooks/use-github-repositories";
 import UserRepositoriesWrapper from "./_components/user-repositories-wrapper";
 import LoadingSpinner from "@/components/ui/loading-spinner";
+import { Github } from "lucide-react";
 
 export default function HomePage() {
   const [searchUser, setSearchUser] = useState("")
@@ -15,11 +16,16 @@ export default function HomePage() {
   const { data: GithubRepositoriesData } = useGithubRepositories(searchUser);
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-white via-gray-100 to-gray-200">
-      <div className="max-w-5xl w-full mx-auto py-5 px-3 space-y-5">
-        <div>
-          <h1 className="text-xl font-bold">Github Profile Viewer</h1>
-          <p>enter a username:</p>
+    <main className="min-h-screen">
+      <div className="max-w-5xl w-full mx-auto py-6 px-3 space-y-5">
+        <div className="flex flex-col items-center gap-2 pb-4">
+          <div className="p-3 rounded-xl bg-primary/18 border border-primary/20 mb-2">
+            <Github className="w-6 h-6 text-primary" />
+          </div>
+          <h1 className="text-3xl font-bold font-mono gradient-text">Github Profile Viewer</h1>
+          <p className="text-muted-foreground text-md">
+            Explore GitHub profiles and repositories
+          </p>
         </div>
 
         <SearchForm onSearch={setSearchUser} isLoading={isLoading} />
@@ -31,7 +37,7 @@ export default function HomePage() {
             <LoadingSpinner />
           )}
           {GithubUserData && (
-            <div className="w-full md:max-w-4/12 none md:sticky top-2 h-fit">
+            <div className="w-full md:max-w-4/12 none md:sticky top-3 h-fit">
               <UserProfileCard user={GithubUserData} />
             </div>
           )}
