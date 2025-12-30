@@ -44,25 +44,26 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --radius: 0.75rem;
+  --background: oklch(0.045 0 0);
+  --foreground: oklch(0.965 0 0);
+  --card: oklch(40.912% 0.00005 271.152 / 0.267);
+  --card-foreground: oklch(0.965 0 0);
+  --popover: oklch(0.085 0 0);
+  --popover-foreground: oklch(0.965 0 0);
+  --primary: oklch(0.965 0 0);
+  --primary-foreground: oklch(0.045 0 0);
+  --secondary: oklch(0.125 0 0);
+  --secondary-foreground: oklch(0.965 0 0);
+  --muted: oklch(0.155 0 0);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.205 0 0);
+  --accent-foreground: oklch(0.965 0 0);
+  --destructive: oklch(0.62 0.23 29);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.185 0 0);
+  --input: oklch(96.416% 0.00011 271.152 / 0.11);
+  --ring: oklch(81.879% 0.00221 14.884 / 0.838);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -76,6 +77,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --gradient-primary: linear-gradient(135deg, hsl(0 0% 95%), hsl(0 0% 70%));
+  --glass-bg: hsl(0 0% 8% / 0.8);
+  --glass-border: hsl(0 0% 25% / 0.4);
+  --glow-primary: 0 0 40px hsl(0 0% 100% / 0.05);
+  --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.5);
+  --shadow-hover: 0 12px 40px hsl(0 0% 0% / 0.6);
 }
 
 .dark {
@@ -116,7 +124,28 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-primary;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-hover);
   }
 }
