@@ -57,7 +57,7 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
                     )}
                 />
                 <Button type="submit" disabled={isLoading} className="size-fit sm:w-40 h-13">
-                    <div className="mx-2">
+                    <div className="mx-0 sm:mx-2 flex items-center gap-3 ">
                         <Search />
                         <span className="hidden sm:block">
                             Search

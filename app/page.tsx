@@ -9,6 +9,7 @@ import { useGithubRepositories } from "@/hooks/use-github-repositories";
 import UserRepositoriesWrapper from "./_components/user-repositories-wrapper";
 import LoadingSpinner from "@/components/ui/loading-spinner";
 import { Github } from "lucide-react";
+import EmptySearchState from "./_components/empty-search-state";
 
 export default function HomePage() {
   const [searchUser, setSearchUser] = useState("")
@@ -30,21 +31,29 @@ export default function HomePage() {
 
         <SearchForm onSearch={setSearchUser} isLoading={isLoading} />
 
-        {error && <ErrorCard message={error.message} />}
+        {!isLoading && error && (
+          <ErrorCard message={error.message} />
+        )}
 
         <div className="flex flex-col md:flex-row gap-6 relative">
           {isLoading && (
             <LoadingSpinner />
           )}
-          {GithubUserData && (
-            <div className="w-full md:max-w-4/12 none md:sticky top-3 h-fit">
-              <UserProfileCard user={GithubUserData} />
-            </div>
+          {!isLoading && !error && !GithubUserData && (
+            <EmptySearchState />
           )}
-          {(GithubUserData && GithubRepositoriesData) && (
-            <div className="w-full md:max-w-8/12">
-              <UserRepositoriesWrapper repositories={GithubRepositoriesData} />
-            </div>
+          {!isLoading && !error && GithubUserData && (
+            <>
+              <div className="w-full md:max-w-4/12 md:sticky top-3 h-fit">
+                <UserProfileCard user={GithubUserData} />
+              </div>
+
+              {GithubRepositoriesData && (
+                <div className="w-full md:max-w-8/12">
+                  <UserRepositoriesWrapper repositories={GithubRepositoriesData} />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
