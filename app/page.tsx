@@ -18,12 +18,12 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       <div className="max-w-5xl w-full mx-auto py-6 px-3 space-y-5">
-        <div className="flex flex-col items-center gap-2 pb-4">
-          <div className="p-3 rounded-xl bg-primary/18 border border-primary/20 mb-2">
-            <Github className="w-6 h-6 text-primary" />
+        <div className="flex flex-col items-center gap-2 pb-1 md:pb-4 text-center">
+          <div className="p-2 md:p-3 rounded-md md:rounded-xl bg-primary/18 border border-primary/20 mb-2">
+            <Github className="size-4 md:size-6 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold font-mono gradient-text">Github Profile Viewer</h1>
-          <p className="text-muted-foreground text-md">
+          <h1 className="text-2xl md:text-3xl font-bold font-mono gradient-text">Github Profile Viewer</h1>
+          <p className="text-muted-foreground text-sm md:text-md">
             Explore GitHub profiles and repositories
           </p>
         </div>

@@ -56,9 +56,13 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" disabled={isLoading} className="w-40 h-13">
-                    <Search />
-                    Search
+                <Button type="submit" disabled={isLoading} className="size-fit sm:w-40 h-13">
+                    <div className="mx-2">
+                        <Search />
+                        <span className="hidden sm:block">
+                            Search
+                        </span>
+                    </div>
                 </Button>
             </form>
         </Form>
