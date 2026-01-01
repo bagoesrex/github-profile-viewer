@@ -3,7 +3,7 @@
 import { useGithubUser } from "@/hooks/use-github-user";
 import { useState } from "react";
 import SearchForm from "./_components/search-form";
-import ErrorCard from "./_components/error-card";
+import ErrorCard from "./_components/error-state";
 import UserProfileCard from "./_components/user-profile-card";
 import { useGithubRepositories } from "@/hooks/use-github-repositories";
 import UserRepositoriesWrapper from "./_components/user-repositories-wrapper";
@@ -31,13 +31,13 @@ export default function HomePage() {
 
         <SearchForm onSearch={setSearchUser} isLoading={isLoading} />
 
-        {!isLoading && error && (
-          <ErrorCard message={error.message} />
-        )}
 
         <div className="flex flex-col md:flex-row gap-6 relative">
           {isLoading && (
             <LoadingSpinner />
+          )}
+          {!isLoading && error && (
+            <ErrorCard message={error.message} />
           )}
           {!isLoading && !error && !GithubUserData && (
             <EmptySearchState />
